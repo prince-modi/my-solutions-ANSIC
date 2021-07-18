@@ -8,10 +8,7 @@
 #include <stdio.h>
 
 int main() {
-    int c, nb, nl, nt;
-    nb=0;
-    nl=0;
-    nt=0;
+    int c;
     while((c=getchar())!= EOF){
         if(c=='\t'){
             putchar('\\');
