@@ -18,10 +18,12 @@ void itob(int n, char str[], int base);
 void strrev(char str[]);
 
 int main(){
-    int n=-9178;
+    int n=255;
     char s[MAX]={0};
-    itob(n,s,16);
-    printf("%s\n",s);
+    for(int i=2;i<37;i++){                                  //limiting the base to 36 Maximum
+        itob(n,s,i);
+        printf("Decimal %d in base %3d : %s\n",n,i,s);
+    }
     return 0;
 }
 
@@ -36,13 +38,13 @@ void strrev(char s[]){
 }
 
 void itob(int n, char s[], int b){
-    char ch[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char ch[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";       //character array to use for conversion from decimal to n-base
     int i, sign, temp;
     sign=n;
     i=0;
     do{
-        temp=abs(n%b);
-        s[i++]=ch[temp];
+        temp=abs(n%b);                                       
+        s[i++]=ch[temp];                                    //takes the temp value from character array and places that in the string
     }while(n/=b);
     if(sign<0)
         s[i++]='-';
