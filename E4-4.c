@@ -2,7 +2,7 @@
 //  main.c
 //  c project
 //
-//  Created by Prince Bhagirath Modi on 04/08/21.
+//  Created by Prince Bhagirath Modi on 08/08/21.
 //  Given the basic framework, it's straightforward to exten the calculator. Add the modulus (%) operator and provisions for negative
 //  numbers.
 //
