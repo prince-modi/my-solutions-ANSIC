@@ -2,24 +2,26 @@
 //  main.c
 //  c project
 //
-//  Created by Prince Bhagirath Modi on 08/08/21.
+//  Created by Prince Bhagirath Modi on 04/08/21.
 //  Given the basic framework, it's straightforward to exten the calculator. Add the modulus (%) operator and provisions for negative
 //  numbers.
 //
 
 #include <stdio.h>
 #include <stdlib.h>                         // for atof()
+#include <math.h>
 
 #define MAXOP 100                           // max size of operand or operator
 #define NUMBER '0'                          // signal that a number was found
 
-//function declaration 
+//function declaration
 int getop(char []);
 void push(double);
 double pop(void);
 void print(void);
-double duplicate(void);
+void duplicate(void);
 void swap(void);
+void clr(void);
 
 
 int main(){
@@ -59,14 +61,20 @@ int main(){
             case '\n':
                 printf("\t%.8g\n",pop());
                 break;
+            case '?':
+                print();
+                break;
+            case 'd':
+                duplicate();
+                break;
+            case '>':
+                clr();
+                break;
             default:
                 printf("error: unknown command %s\n",s);
                 break;
         }
     }
-    print();
-    printf("%g\n",duplicate());
-    swap();
     return 0;
 }
 
@@ -99,8 +107,11 @@ void print(void){
 }
 
 //duplicate: return top value from stack
-double duplicate(void){
-    return val[sp];
+void duplicate(void){
+    double temp;
+    temp=pop();
+    push(temp);
+    push(temp);
 }
 
 //swap: swap top two values in the stack
@@ -115,6 +126,12 @@ void swap(void){
         printf("error: not enough items in stack\n");
 }
 
+//clr: empty the stack
+void clr(void){
+    for(int i=0;i<MAXVAL;i++)
+        val[i]=0;
+}
+
 #include <ctype.h>
 
 int getch(void);
@@ -127,6 +144,13 @@ int getop(char s[]){
         ;
     s[1]='\0';
     i=0;
+    if(isalpha(c)){
+        while (isalpha(s[++i]=c=getch()))
+            ;
+        ungetchh(s[i]);
+        s[i]=0;
+        return s[0];
+    }
     if(!isdigit(c) && c!='\n'){
         if(isdigit(s[++i]=getch()))
             while (isdigit(s[++i]=c=getch()))
