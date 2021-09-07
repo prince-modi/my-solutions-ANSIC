@@ -19,9 +19,8 @@ int main(void){
 }
 
 void astrcat(char *s, char *t){
-    while(*s++)
+    while(*++s)
         ;
-    s--;
     while(*s++ = *t++)
         ;
     return;
